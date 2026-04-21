@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoodPage API Documentation - Text to Beautiful Web Pages</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .header {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .header h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 1.2em;
+        }
+        
+        .content {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        h2 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin: 30px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        h3 {
+            color: #764ba2;
+            font-size: 1.4em;
+            margin: 25px 0 15px 0;
+        }
+        
+        p {
+            margin: 15px 0;
+            color: #555;
+        }
+        
+        code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #e83e8c;
+            font-size: 0.9em;
+        }
+        
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+        
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .endpoint {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1em;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+        
+        .badge-required {
+            background: #ffebee;
+            color: #c62828;
+        }
+        
+        .badge-optional {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .feature-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .feature-card h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: white;
+            opacity: 0.9;
+        }
+        
+        .footer a {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .content {
+                padding: 25px;
+            }
+            
+            table {
+                font-size: 0.9em;
+            }
+            
+            th, td {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 头部 -->
+        <div class="header">
+            <h1>🚀 GoodPage API Documentation</h1>
+            <p>Transform plain text into beautiful HTML web pages with one click</p>
+        </div>
+        
+        <!-- 内容区 -->
+        <div class="content">
+            <!-- 概述 -->
+            <h2>📖 Overview</h2>
+            <p>GoodPage provides powerful text-to-HTML API services that can automatically convert plain text into beautiful web pages with rich visual effects. Supports multiple style templates, intelligent typesetting, and custom requirements.</p>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>✨ Smart Beautification</h4>
+                    <p>AI automatically analyzes content and intelligently matches the best layout style and visual elements</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🎨 Diverse Templates</h4>
+                    <p>17+ professional design templates to meet display needs for different scenarios</p>
+                </div>
+                <div class="feature-card">
+                    <h4>⚡ Fast Response</h4>
+                    <p>Usually completes conversion within 3-10 seconds, supports high concurrent calls</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🔗 Flexible Output</h4>
+                    <p>Can return HTML code or directly generate accessible web page links</p>
+                </div>
+            </div>
+            
+            <!-- API 端点 -->
+            <h2>🌐 API Endpoint</h2>
+            <div class="endpoint">
+                POST https://p.isheet.net/api/text-to-html
+            </div>
+            
+            <!-- 请求参数 -->
+            <h2>📝 Request Parameters</h2>
+            
+            <h3>Request Headers</h3>
+            <pre><code>Content-Type: application/json</code></pre>
+            
+            <h3>Request Body (JSON Format)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Type</th>
+                        <th>Required</th>
+                        <th>Default</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>content</code></td>
+                        <td>string</td>
+                        <td><span class="badge badge-required">Yes</span></td>
+                        <td>-</td>
+                        <td>Text content to convert</td>
+                    </tr>
+                    <tr>
+                        <td><code>title</code></td>
+                        <td>string</td>
+                        <td><span class="badge badge-optional">No</span></td>
+                        <td>AI Generated</td>
+                        <td>Article title (if not provided, AI will auto-generate)</td>
+                    </tr>
+                    <tr>
+                        <td><code>content_strategy</code></td>
+                        <td>string</td>
+                        <td><span class="badge badge-optional">No</span></td>
+                        <td><code>strict</code></td>
+                        <td>Expansion mode:<br><code>strict</code> - Strictly follow original<br><code>interpret</code> - Interpret & optimize<br><code>expand</code> - Expand & enrich</td>
+                    </tr>
+                    <tr>
+                        <td><code>extra_requirements</code></td>
+                        <td>string</td>
+                        <td><span class="badge badge-optional">No</span></td>
+                        <td>Empty</td>
+                        <td>Additional requirements, describe formatting needs in natural language, e.g., "Use blue theme", "Add tables to display data"</td>
+                    </tr>
+                    <tr>
+                        <td><code>response_type</code></td>
+                        <td>string</td>
+                        <td><span class="badge badge-optional">No</span></td>
+                        <td><code>html</code></td>
+                        <td>Response type:<br><code>html</code> - Return HTML code<br><code>url</code> - Return webpage URL</td>
+                    </tr>
+                    <tr>
+                        <td><code>style</code></td>
+                        <td>string</td>
+                        <td><span class="badge badge-optional">No</span></td>
+                        <td>AI Selected</td>
+                        <td>Specify style template code, e.g., <code>minimalist</code>, <code>premium_bw</code>, <code>tech_blue</code>, etc.</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <!-- 请求示例 -->
+            <h2>💻 Request Examples</h2>
+            
+            <h3>Basic Usage</h3>
+            <pre><code>{
+  "content": "This is a test text.\n\nAI technology is changing our way of life.". "
+}</code></pre>
+            
+            <h3>Advanced Usage</h3>
+            <pre><code>{
+  "content": "Artificial intelligence is changing the world\n\nWith the advancement of technology, artificial intelligence has penetrated into every aspect of our lives. From smartphones to autonomous vehicles, AI technology is reshaping our way of life.\n\nFuture outlook:\n1. Smarter personal assistants\n2. Innovation in medical diagnosis\n3. Personalized education\n4. Industrial automation",
+  "title": "Artificial Intelligence Changes Life",
+  "content_strategy": "strict",
+  "extra_requirements": "Please use a blue theme and incorporate elements with a technological feel.",
+  "response_type": "url",
+  "style": "neon_glassmorphism"
+}</code></pre>
+            
+            <!-- 响应格式 -->
+            <h2>📤 Response Format</h2>
+            
+            <h3>Success Response (Returns HTML)</h3>
+            <pre><code>{
+  "status": "success",
+  "message": "HTML generated successfully",
+  "html": "&lt;!DOCTYPE html&gt;\n&lt;html lang=\"zh-CN\"&gt;\n...",
+  "article_id": "abcdefgh",
+  "title": "Artificial intelligence changes life"
+}</code></pre>
+            
+            <h3>Success Response (Returns URL)</h3>
+            <pre><code>{
+  "status": "success",
+  "message": "HTML generated and saved successfully",
+  "url": "/p/abcdefgh",
+  "full_url": "https://p.isheet.net/p/abcdefgh",
+  "article_id": "abcdefgh",
+  "title": "Artificial intelligence changes life"
+}</code></pre>
+            
+            <h3>Error Response</h3>
+            <pre><code>{
+  "status": "error",
+  "message": "Error message description"
+}</code></pre>
+            
+            <!-- 使用示例 -->
+            <h2>🔧 Usage Examples</h2>
+            
+            <h3>Python Example</h3>
+            <pre><code>import requests
+
+# API 端点
+url = "https://p.isheet.net/api/text-to-html"
+
+# 请求数据
+payload = {
+    "content": """Artificial intelligence is transforming the world
+    
+With technological advancements, artificial intelligence has penetrated into every aspect of our lives. From smartphones to autonomous vehicles, AI technology is reshaping our way of life.
+
+Future outlook:
+1. A smarter personal assistant
+2. Innovation in medical diagnosis
+3. Personalized education
+4. "Industrial automation",
+    "title": "Artificial Intelligence Changes Life",
+    "response_type": "url"
+}
+
+# Send Request
+response = requests.post(url, json=payload)
+
+# Check response
+if response.status_code == 200:
+    result = response.json()
+    if result["status"] == "success":
+        article_url = result["full_url"]
+        print(f"✅ Web page generated successfully!")
+        print(f"🔗 Access link: {article_url}")
+    else:
+        print(f"❌ Generation failed: {result['message']}")
+else:
+    print(f"❌ Request failed, status code: {response.status_code}")</code></pre>
+            
+            <h3>JavaScript Example</h3>
+            <pre><code>async function textToHtml() {
+    const url = 'https://p.isheet.net/api/text-to-html';
+    
+    const payload = {
+        content: `Artificial intelligence is changing the world
+
+With the advancement of technology, artificial intelligence has penetrated into every aspect of our lives. `,
+        title: 'Artificial Intelligence Changes Life',
+        response_type: 'url'
+    };
+    
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        });
+        
+        const result = await response.json();
+        
+        if (result.status === 'success') {
+            console.log('✅ Web page generated successfully!');
+            console.log('🔗 Access link:', result.full_url);
+        } else {
+            console.error('❌ Generation failed:', result.message);
+        }
+    } catch (error) {
+        console.error('❌ Request exception:', error.message);
+    }
+}
+
+textToHtml();</code></pre>
+            
+            <h3>cURL Example</h3>
+            <pre><code>curl -X POST https://p.isheet.net/api/text-to-html \
+  -H "Content-Type: application/json" \
+  -d '{
+    "content": "This is a test text.\n\nAI technology is changing our way of life.",
+    "title": "test article",
+    "response_type": "url"
+  }'</code></pre>
+            
+            <!-- 配额说明 -->
+            <h2>📊 Quota Information</h2>
+            <p>Each IP address enjoys <strong>50 free call quota</strong>. After exceeding the quota, please contact customer service to upgrade.</p>
+            <p>Quota validity period is <strong>30 days</strong>, automatically reset after expiration.</p>
+            
+            <!-- 样式模板 -->
+            <h2>🎨 Available Style Templates</h2>
+            <p>You can specify the following style templates through the <code>style</code> parameter:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Template Code</th>
+                        <th>Chinese Name</th>
+                        <th>English Name</th>
+                        <th>Features</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>minimalist</code></td>
+                        <td>极简主义</td>
+                        <td>Minimalist</td>
+                        <td>Simple & Professional - Suitable for technical documentation, reports</td>
+                    </tr>
+                    <tr>
+                        <td><code>premium_bw</code></td>
+                        <td>高级黑白</td>
+                        <td>Premium Black & White</td>
+                        <td>Elegant black, white & gray - Showcases text beauty through typography</td>
+                    </tr>
+                    <tr>
+                        <td><code>neon_glassmorphism</code></td>
+                        <td>霓虹玻璃</td>
+                        <td>Neon Glass</td>
+                        <td>Tech & Futuristic - Suitable for AI, technology themes</td>
+                    </tr>
+                    <tr>
+                        <td><code>magazine_gradient</code></td>
+                        <td>杂志渐变</td>
+                        <td>Magazine Gradient</td>
+                        <td>Warm & Modern - Suitable for lifestyle, fashion</td>
+                    </tr>
+                    <tr>
+                        <td><code>cyberpunk_neon</code></td>
+                        <td>赛博朋克</td>
+                        <td>Cyberpunk Neon</td>
+                        <td>Tech & Avant-garde - Suitable for cybersecurity, hacker themes</td>
+                    </tr>
+                    <tr>
+                        <td><code>minimalist_timeline</code></td>
+                        <td>时间线</td>
+                        <td>Minimalist Timeline</td>
+                        <td>Historical Process - Suitable for development history, time series</td>
+                    </tr>
+                    <tr>
+                        <td><code>gradient_glass</code></td>
+                        <td>渐变玻璃</td>
+                        <td>Gradient Glass</td>
+                        <td>Soft & Modern - Suitable for business, startup themes</td>
+                    </tr>
+                    <tr>
+                        <td><code>bold_waves</code></td>
+                        <td>大胆波浪</td>
+                        <td>Bold Waves</td>
+                        <td>Vibrant & Dynamic - Suitable for sports, young audience</td>
+                    </tr>
+                    <tr>
+                        <td><code>space_cosmic</code></td>
+                        <td>太空宇宙</td>
+                        <td>Space Cosmic</td>
+                        <td>Sci-Fi Exploration - Suitable for astronomy, aerospace themes</td>
+                    </tr>
+                    <tr>
+                        <td><code>swiss_grid</code></td>
+                        <td>瑞士网格</td>
+                        <td>Swiss Grid</td>
+                        <td>Rigorous & Professional - Suitable for data analysis, academic research</td>
+                    </tr>
+                    <tr>
+                        <td><code>handdrawn_notes</code></td>
+                        <td>手绘笔记</td>
+                        <td>Handdrawn Notes</td>
+                        <td>Relaxed & Creative - Suitable for study notes, creative ideas</td>
+                    </tr>
+                    <tr>
+                        <td><code>dark_luxury</code></td>
+                        <td>暗黑奢华</td>
+                        <td>Dark Luxury</td>
+                        <td>High-end & Mysterious - Suitable for luxury goods, premium brands</td>
+                    </tr>
+                    <tr>
+                        <td><code>pastel_soft</code></td>
+                        <td>柔和粉彩</td>
+                        <td>Pastel Soft</td>
+                        <td>Gentle & Fresh - Suitable for female, children, warm themes</td>
+                    </tr>
+                    <tr>
+                        <td><code>brutalist_bold</code></td>
+                        <td>粗野主义</td>
+                        <td>Brutalist Bold</td>
+                        <td>Strong Personality - Suitable for art, design expression</td>
+                    </tr>
+                    <tr>
+                        <td><code>kawaii_bubbles</code></td>
+                        <td>可爱泡泡</td>
+                        <td>Kawaii Bubbles</td>
+                        <td>Cute & Lively - Suitable for pets, anime, entertainment</td>
+                    </tr>
+                    <tr>
+                        <td><code>newspaper_classic</code></td>
+                        <td>报纸经典</td>
+                        <td>Newspaper Classic</td>
+                        <td>Traditional & Formal - Suitable for news, announcements, statements</td>
+                    </tr>
+                    <tr>
+                        <td><code>geometric_modern</code></td>
+                        <td>几何现代</td>
+                        <td>Geometric Modern</td>
+                        <td>Modern Structured - Suitable for architecture, design themes</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <!-- 常见问题 -->
+            <h2>❓ Frequently Asked Questions</h2>
+            
+            <h3>Q: Why am I getting a 403 error?</h3>
+            <p>A: Your IP address quota has been exhausted. Each IP has 50 free call quota. After exceeding, please contact customer service to upgrade.</p>
+            
+            <h3>Q: How to get permanent links for articles?</h3>
+            <p>A: Use the <code>response_type: "url"</code> parameter, the API will return the complete webpage access link.</p>
+            
+            <h3>Q: Can the generated HTML be used offline?</h3>
+            <p>A: Yes, all styles are inline, no external resources needed, can be fully used offline.</p>
+            
+            <h3>Q: What languages are supported?</h3>
+            <p>A: Supports Chinese, English and other languages. The API will automatically detect the text language and apply corresponding typesetting rules.</p>
+            
+            <h3>Q: How to handle long text?</h3>
+            <p>A: It is recommended not to exceed 10,000 characters per request. For ultra-long text, you can process it in segments or contact customer service for optimization solutions.</p>
+            
+            <!-- 技术支持 -->
+            <h2>📞 Technical Support</h2>
+            <p>If you have questions or need to increase quota, please contact us through the following methods:</p>
+            <ul style="margin: 15px 0; padding-left: 30px;">
+                <li>Email: chenkunji@qq.com</li>
+                <li>Website: <a href="https://p.isheet.net" target="_blank" style="color: #667eea;">https://p.isheet.net</a></li>
+            </ul>
+        </div>
+        
+        <!-- 页脚 -->
+        <div class="footer" >
+            <p style="color: white;"">© 2026 GoodPage | <a href="/">Home</a> | <a href="/terms-en">Terms of Service</a> | <a href="/privacy-en">Privacy Policy</a></p>
+        </div>
+    </div>
+</body>
+</html>

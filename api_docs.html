@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>深表美文 API 文档 - 文本转精美网页</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .header {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .header h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 1.2em;
+        }
+        
+        .content {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        h2 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin: 30px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        h3 {
+            color: #764ba2;
+            font-size: 1.4em;
+            margin: 25px 0 15px 0;
+        }
+        
+        p {
+            margin: 15px 0;
+            color: #555;
+        }
+        
+        code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #e83e8c;
+            font-size: 0.9em;
+        }
+        
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+        
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .endpoint {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1em;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+        
+        .badge-required {
+            background: #ffebee;
+            color: #c62828;
+        }
+        
+        .badge-optional {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .feature-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .feature-card h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: white;
+            opacity: 0.9;
+        }
+        
+        .footer a {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .content {
+                padding: 25px;
+            }
+            
+            table {
+                font-size: 0.9em;
+            }
+            
+            th, td {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 头部 -->
+        <div class="header">
+            <h1>🚀 深表美文 API 文档</h1>
+            <p>将普通文本一键转换为精美的 HTML 网页</p>
+        </div>
+        
+        <!-- 内容区 -->
+        <div class="content">
+            <!-- 概述 -->
+            <h2>📖 概述</h2>
+            <p>深表美文提供强大的文本转 HTML API 服务，可将普通文本自动转换为具有丰富视觉效果的精美网页。支持多种样式模板、智能排版和自定义需求。</p>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>✨ 智能美化</h4>
+                    <p>AI 自动分析内容，智能匹配最佳排版风格和视觉元素</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🎨 多样模板</h4>
+                    <p>17+ 种专业设计模板，满足不同场景的展示需求</p>
+                </div>
+                <div class="feature-card">
+                    <h4>⚡ 快速响应</h4>
+                    <p>通常 3-10 秒内完成转换，支持高并发调用</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🔗 灵活输出</h4>
+                    <p>可返回 HTML 代码或直接生成可访问的网页链接</p>
+                </div>
+            </div>
+            
+            <!-- API 端点 -->
+            <h2>🌐 API 端点</h2>
+            <div class="endpoint">
+                POST https://p.isheet.net/api/text-to-html
+            </div>
+            
+            <!-- 请求参数 -->
+            <h2>📝 请求参数</h2>
+            
+            <h3>请求头</h3>
+            <pre><code>Content-Type: application/json</code></pre>
+            
+            <h3>请求体（JSON 格式）</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>参数名</th>
+                        <th>类型</th>
+                        <th>必填</th>
+                        <th>默认值</th>
+                        <th>说明</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>content</code></td>
+                        <td>string</td>
+                        <td><span class="badge badge-required">是</span></td>
+                        <td>-</td>
+                        <td>要转换的文本内容</td>
+                    </tr>
+                    <tr>
+                        <td><code>title</code></td>
+                        <td>string</td>
+                        <td><span class="badge badge-optional">否</span></td>
+                        <td>AI 生成</td>
+                        <td>文章标题（如不提供，AI 会自动生成）</td>
+                    </tr>
+                    <tr>
+                        <td><code>content_strategy</code></td>
+                        <td>string</td>
+                        <td><span class="badge badge-optional">否</span></td>
+                        <td><code>strict</code></td>
+                        <td>扩写模式：<br><code>strict</code> - 严格遵循原文<br><code>interpret</code> - 解读优化<br><code>expand</code> - 扩写丰富</td>
+                    </tr>
+                    <tr>
+                        <td><code>extra_requirements</code></td>
+                        <td>string</td>
+                        <td><span class="badge badge-optional">否</span></td>
+                        <td>空</td>
+                        <td>额外需求，用自然语言描述格式化要求，例如："使用蓝色主题"、"添加表格展示数据"</td>
+                    </tr>
+                    <tr>
+                        <td><code>response_type</code></td>
+                        <td>string</td>
+                        <td><span class="badge badge-optional">否</span></td>
+                        <td><code>html</code></td>
+                        <td>响应类型：<br><code>html</code> - 返回 HTML 代码<br><code>url</code> - 返回网页 URL</td>
+                    </tr>
+                    <tr>
+                        <td><code>style</code></td>
+                        <td>string</td>
+                        <td><span class="badge badge-optional">否</span></td>
+                        <td>AI 选择</td>
+                        <td>指定样式模板代码，如：<code>minimalist</code>、<code>premium_bw</code>、<code>tech_blue</code> 等</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <!-- 请求示例 -->
+            <h2>💻 请求示例</h2>
+            
+            <h3>基础用法</h3>
+            <pre><code>{
+  "content": "这是一段测试文本。\n\nAI 技术正在改变我们的生活方式。"
+}</code></pre>
+            
+            <h3>完整用法</h3>
+            <pre><code>{
+  "content": "人工智能正在改变世界\n\n随着技术的进步，人工智能已经深入到我们生活的方方面面。从智能手机到自动驾驶汽车，AI 技术正在重塑我们的生活方式。\n\n未来展望：\n1. 更智能的个人助手\n2. 医疗诊断的革新\n3. 教育个性化\n4. 工业自动化",
+  "title": "人工智能改变生活",
+  "content_strategy": "strict",
+  "extra_requirements": "请使用蓝色主题，添加科技感的元素",
+  "response_type": "url",
+  "style": "neon_glassmorphism"
+}</code></pre>
+            
+            <!-- 响应格式 -->
+            <h2>📤 响应格式</h2>
+            
+            <h3>成功响应（返回 HTML）</h3>
+            <pre><code>{
+  "status": "success",
+  "message": "HTML generated successfully",
+  "html": "&lt;!DOCTYPE html&gt;\n&lt;html lang=\"zh-CN\"&gt;\n...",
+  "article_id": "abcdefgh",
+  "title": "人工智能改变生活"
+}</code></pre>
+            
+            <h3>成功响应（返回 URL）</h3>
+            <pre><code>{
+  "status": "success",
+  "message": "HTML generated and saved successfully",
+  "url": "/p/abcdefgh",
+  "full_url": "https://p.isheet.net/p/abcdefgh",
+  "article_id": "abcdefgh",
+  "title": "人工智能改变生活"
+}</code></pre>
+            
+            <h3>错误响应</h3>
+            <pre><code>{
+  "status": "error",
+  "message": "错误信息描述"
+}</code></pre>
+            
+            <!-- 使用示例 -->
+            <h2>🔧 使用示例</h2>
+            
+            <h3>Python 示例</h3>
+            <pre><code>import requests
+
+# API 端点
+url = "https://p.isheet.net/api/text-to-html"
+
+# 请求数据
+payload = {
+    "content": """人工智能正在改变世界
+    
+随着技术的进步，人工智能已经深入到我们生活的方方面面。从智能手机到自动驾驶汽车，AI 技术正在重塑我们的生活方式。
+
+未来展望：
+1. 更智能的个人助手
+2. 医疗诊断的革新
+3. 教育个性化
+4. 工业自动化""",
+    "title": "人工智能改变生活",
+    "response_type": "url"
+}
+
+# 发送请求
+response = requests.post(url, json=payload)
+
+# 检查响应
+if response.status_code == 200:
+    result = response.json()
+    if result["status"] == "success":
+        article_url = result["full_url"]
+        print(f"✅ 网页生成成功！")
+        print(f"🔗 访问链接: {article_url}")
+    else:
+        print(f"❌ 生成失败: {result['message']}")
+else:
+    print(f"❌ 请求失败，状态码: {response.status_code}")</code></pre>
+            
+            <h3>JavaScript 示例</h3>
+            <pre><code>async function textToHtml() {
+    const url = 'https://p.isheet.net/api/text-to-html';
+    
+    const payload = {
+        content: `人工智能正在改变世界
+
+随着技术的进步，人工智能已经深入到我们生活的方方面面。`,
+        title: '人工智能改变生活',
+        response_type: 'url'
+    };
+    
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        });
+        
+        const result = await response.json();
+        
+        if (result.status === 'success') {
+            console.log('✅ 网页生成成功！');
+            console.log('🔗 访问链接:', result.full_url);
+        } else {
+            console.error('❌ 生成失败:', result.message);
+        }
+    } catch (error) {
+        console.error('❌ 请求异常:', error.message);
+    }
+}
+
+textToHtml();</code></pre>
+            
+            <h3>cURL 示例</h3>
+            <pre><code>curl -X POST https://p.isheet.net/api/text-to-html \
+  -H "Content-Type: application/json" \
+  -d '{
+    "content": "这是一段测试文本。\n\nAI 技术正在改变我们的生活。",
+    "title": "测试文章",
+    "response_type": "url"
+  }'</code></pre>
+            
+            <!-- 配额说明 -->
+            <h2>📊 配额说明</h2>
+            <p>每个 IP 地址享有 <strong>50 次免费调用额度</strong>。超过配额后，请联系客服升级。</p>
+            <p>配额有效期为 <strong>30 天</strong>，到期后自动重置。</p>
+            
+            <!-- 样式模板 -->
+            <h2>🎨 可用样式模板</h2>
+            <p>您可以通过 <code>style</code> 参数指定以下样式模板：</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>模板代码</th>
+                        <th>中文名称</th>
+                        <th>英文名称</th>
+                        <th>特点</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>minimalist</code></td>
+                        <td>极简主义</td>
+                        <td>Minimalist</td>
+                        <td>简洁专业 - 适合技术文档、报告</td>
+                    </tr>
+                    <tr>
+                        <td><code>premium_bw</code></td>
+                        <td>高级黑白</td>
+                        <td>Premium Black & White</td>
+                        <td>优雅黑白灰 - 通过字体和排版展现文字美感</td>
+                    </tr>
+                    <tr>
+                        <td><code>neon_glassmorphism</code></td>
+                        <td>霓虹玻璃</td>
+                        <td>Neon Glass</td>
+                        <td>科技感、未来感 - 适合AI、科技主题</td>
+                    </tr>
+                    <tr>
+                        <td><code>magazine_gradient</code></td>
+                        <td>杂志渐变</td>
+                        <td>Magazine Gradient</td>
+                        <td>温暖现代 - 适合生活方式、时尚</td>
+                    </tr>
+                    <tr>
+                        <td><code>cyberpunk_neon</code></td>
+                        <td>赛博朋克</td>
+                        <td>Cyberpunk Neon</td>
+                        <td>科技前卫 - 适合网络安全、黑客主题</td>
+                    </tr>
+                    <tr>
+                        <td><code>minimalist_timeline</code></td>
+                        <td>时间线</td>
+                        <td>Minimalist Timeline</td>
+                        <td>历史进程 - 适合发展历程、时间序列</td>
+                    </tr>
+                    <tr>
+                        <td><code>gradient_glass</code></td>
+                        <td>渐变玻璃</td>
+                        <td>Gradient Glass</td>
+                        <td>柔和现代 - 适合商业、创业主题</td>
+                    </tr>
+                    <tr>
+                        <td><code>bold_waves</code></td>
+                        <td>大胆波浪</td>
+                        <td>Bold Waves</td>
+                        <td>活力动感 - 适合运动、年轻群体</td>
+                    </tr>
+                    <tr>
+                        <td><code>space_cosmic</code></td>
+                        <td>太空宇宙</td>
+                        <td>Space Cosmic</td>
+                        <td>科幻探索 - 适合天文、航天主题</td>
+                    </tr>
+                    <tr>
+                        <td><code>swiss_grid</code></td>
+                        <td>瑞士网格</td>
+                        <td>Swiss Grid</td>
+                        <td>严谨专业 - 适合数据分析、学术研究</td>
+                    </tr>
+                    <tr>
+                        <td><code>handdrawn_notes</code></td>
+                        <td>手绘笔记</td>
+                        <td>Handdrawn Notes</td>
+                        <td>轻松创意 - 适合学习笔记、创意想法</td>
+                    </tr>
+                    <tr>
+                        <td><code>dark_luxury</code></td>
+                        <td>暗黑奢华</td>
+                        <td>Dark Luxury</td>
+                        <td>高端神秘 - 适合奢侈品、高端品牌</td>
+                    </tr>
+                    <tr>
+                        <td><code>pastel_soft</code></td>
+                        <td>柔和粉彩</td>
+                        <td>Pastel Soft</td>
+                        <td>温柔清新 - 适合女性、儿童、温馨主题</td>
+                    </tr>
+                    <tr>
+                        <td><code>brutalist_bold</code></td>
+                        <td>粗野主义</td>
+                        <td>Brutalist Bold</td>
+                        <td>强烈个性 - 适合艺术、设计表达</td>
+                    </tr>
+                    <tr>
+                        <td><code>kawaii_bubbles</code></td>
+                        <td>可爱泡泡</td>
+                        <td>Kawaii Bubbles</td>
+                        <td>萌系活泼 - 适合萌宠、二次元、娱乐</td>
+                    </tr>
+                    <tr>
+                        <td><code>newspaper_classic</code></td>
+                        <td>报纸经典</td>
+                        <td>Newspaper Classic</td>
+                        <td>传统正式 - 适合新闻、公告、声明</td>
+                    </tr>
+                    <tr>
+                        <td><code>geometric_modern</code></td>
+                        <td>几何现代</td>
+                        <td>Geometric Modern</td>
+                        <td>现代结构化 - 适合建筑、设计主题</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <!-- 常见问题 -->
+            <h2>❓ 常见问题</h2>
+            
+            <h3>Q: 为什么返回 403 错误？</h3>
+            <p>A: 您的 IP 地址配额已用完。每个 IP 有 50 次免费调用额度，超过后需要联系客服升级。</p>
+            
+            <h3>Q: 如何获取文章的永久链接？</h3>
+            <p>A: 使用 <code>response_type: "url"</code> 参数，API 会返回完整的网页访问链接。</p>
+            
+            <h3>Q: 生成的 HTML 可以离线使用吗？</h3>
+            <p>A: 是的，所有样式都是内联的，无需外部资源，可以完全离线使用。</p>
+            
+            <h3>Q: 支持哪些语言？</h3>
+            <p>A: 支持中文、英文等多种语言，API 会自动检测文本语言并应用相应的排版规则。</p>
+            
+            <h3>Q: 如何处理长文本？</h3>
+            <p>A: 建议单次请求不超过 10,000 字。对于超长文本，可以分段处理或联系客服获取优化方案。</p>
+            
+            <!-- 技术支持 -->
+            <h2>📞 技术支持</h2>
+            <p>如有问题或需要提升配额，请通过以下方式联系我们：</p>
+            <ul style="margin: 15px 0; padding-left: 30px;">
+                <li>邮箱：chenkunji@qq.com</li>
+                <li>网站：<a href="https://p.isheet.net" target="_blank" style="color: #667eea;">https://p.isheet.net</a></li>
+            </ul>
+        </div>
+        
+        <!-- 页脚 -->
+        <div class="footer">
+            <p>© 2026 深表美文 | <a href="/">返回首页</a> | <a href="/terms">服务条款</a> | <a href="/privacy">隐私政策</a></p>
+        </div>
+    </div>
+</body>
+</html>

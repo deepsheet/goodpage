@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ t('privacy_page_title') }}</title>
+    <meta name="description" content="{{ t('brand_name') }} - {{ t('link_privacy') }}">
+    <link rel="icon" href="/favicon.ico?v=2" type="image/x-icon">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .back-home-top {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            text-decoration: none;
+            font-size: 0.95em;
+            opacity: 0.9;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .back-home-top:hover {
+            opacity: 1;
+            transform: translateX(-3px);
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .header .last-updated {
+            font-size: 0.95em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 50px 40px;
+        }
+        
+        .section {
+            margin-bottom: 35px;
+        }
+        
+        .section h2 {
+            color: #667eea;
+            font-size: 1.6em;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            display: inline-block;
+        }
+        
+        .section p {
+            margin-bottom: 15px;
+            color: #555;
+            line-height: 2;
+        }
+        
+        .section ul {
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .section li {
+            margin-bottom: 10px;
+            color: #555;
+            line-height: 1.8;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+            margin: 20px 0;
+        }
+        
+        .highlight-box p {
+            margin: 0;
+            color: #2d3748;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .back-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+        }
+        
+        footer {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 40px;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .footer-links {
+            margin: 15px 0;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            opacity: 0.9;
+            transition: opacity 0.3s;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px;
+                border-radius: 15px;
+            }
+            
+            .header {
+                padding: 35px 25px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .content {
+                padding: 35px 25px;
+            }
+            
+            .section h2 {
+                font-size: 1.4em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="/" class="back-home-top">← 返回首页</a>
+            <h1>{{ t('link_privacy') }}</h1>
+            <p class="last-updated">{{ t('privacy_last_updated') }}: 2026年4月8日</p>
+        </div>
+        
+        <div class="content">
+            {% if lang == 'zh' %}
+            <!-- 中文版本 -->
+            <div class="highlight-box">
+                <p><strong>隐私承诺：</strong>我们深知隐私的重要性。本隐私政策清晰说明我们如何收集、使用和保护您的个人信息。</p>
+            </div>
+            
+            <div class="section">
+                <h2>1. 信息收集</h2>
+                <p>我们收集的信息类型包括：</p>
+                <ul>
+                    <li><strong>您提供的内容：</strong>您在美化过程中提交的文本内容</li>
+                    <li><strong>技术数据：</strong>IP地址、浏览器类型、设备信息、访问时间等</li>
+                    <li><strong>使用数据：</strong>您如何使用我们的服务，包括功能使用频率、生成的文章数量等</li>
+                    <li><strong>Cookie数据：</strong>用于记住您的语言偏好和会话状态</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>2. 信息使用</h2>
+                <p>我们使用收集的信息用于以下目的：</p>
+                <ul>
+                    <li>提供和改进文字美化服务</li>
+                    <li>生成和存储美化后的文章，以便通过链接访问</li>
+                    <li>分析使用情况以优化用户体验</li>
+                    <li>防止滥用和确保服务安全</li>
+                    <li>响应您的请求和支持需求</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>3. 数据存储与安全</h2>
+                <p>我们采取合理的技术和组织措施保护您的数据：</p>
+                <ul>
+                    <li>所有数据传输均采用加密连接（HTTPS）</li>
+                    <li>生成的文章存储在安全的服务器上</li>
+                    <li>定期备份数据以防止丢失</li>
+                    <li>限制员工对用户数据的访问权限</li>
+                    <li>持续监控和改进安全措施</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>4. 数据共享</h2>
+                <p><strong>我们不会出售、出租或交易您的个人信息。</strong></p>
+                <p>在以下情况下，我们可能会共享信息：</p>
+                <ul>
+                    <li><strong>法律要求：</strong>根据法律法规、法院命令或政府要求</li>
+                    <li><strong>保护权利：</strong>为保护我们的权利、财产或安全，或他人的权利、财产或安全</li>
+                    <li><strong>服务提供商：</strong>与帮助我们运营服务的可信第三方合作（他们必须遵守保密义务）</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>5. 您的权利</h2>
+                <p>您对个人数据享有以下权利：</p>
+                <ul>
+                    <li><strong>访问权：</strong>您可以请求了解我们持有的关于您的信息</li>
+                    <li><strong>更正权：</strong>您可以要求更正不准确或不完整的信息</li>
+                    <li><strong>删除权：</strong>您可以请求删除您的个人数据和生成的文章</li>
+                    <li><strong>反对权：</strong>您可以反对我们对您数据的某些处理方式</li>
+                    <li><strong>数据携带权：</strong>您可以请求以结构化格式获取您的数据</li>
+                </ul>
+                <p>如需行使这些权利，请通过 support@isheet.net 联系我们。</p>
+            </div>
+            
+            <div class="section">
+                <h2>6. Cookie 使用</h2>
+                <p>我们使用 Cookie 和类似技术来：</p>
+                <ul>
+                    <li>记住您的语言偏好设置</li>
+                    <li>保持登录状态和会话信息</li>
+                    <li>分析网站流量和使用模式</li>
+                    <li>改善用户体验</li>
+                </ul>
+                <p>您可以通过浏览器设置管理或禁用 Cookie，但这可能影响某些功能的正常使用。</p>
+            </div>
+            
+            <div class="section">
+                <h2>7. 儿童隐私</h2>
+                <p>我们的服务不面向13岁以下的儿童。我们不会故意收集儿童的个人信息。如果我们发现无意中收集了儿童的信息，我们将立即删除。</p>
+            </div>
+            
+            <div class="section">
+                <h2>8. 政策更新</h2>
+                <p>我们可能会不时更新本隐私政策。重大变更时，我们会通过网站公告或电子邮件通知您。建议您定期查看本政策以了解最新信息。</p>
+            </div>
+            
+            <div class="section">
+                <h2>9. 联系我们</h2>
+                <p>如果您对本隐私政策有任何疑问、意见或建议，请通过以下方式联系我们：</p>
+                <p><strong>邮箱：</strong>support@isheet.net</p>
+                <p>我们将在合理时间内回复您的询问。</p>
+            </div>
+            
+            <a href="/" class="back-link">← 返回首页</a>
+            
+            {% else %}
+            <!-- English Version -->
+            <div class="highlight-box">
+                <p><strong>Privacy Commitment:</strong> We understand the importance of privacy. This Privacy Policy clearly explains how we collect, use, and protect your personal information.</p>
+            </div>
+            
+            <div class="section">
+                <h2>1. Information Collection</h2>
+                <p>The types of information we collect include:</p>
+                <ul>
+                    <li><strong>Content You Provide:</strong> Text content you submit during the beautification process</li>
+                    <li><strong>Technical Data:</strong> IP address, browser type, device information, access time, etc.</li>
+                    <li><strong>Usage Data:</strong> How you use our service, including feature usage frequency, number of articles generated, etc.</li>
+                    <li><strong>Cookie Data:</strong> Used to remember your language preferences and session status</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>2. Information Use</h2>
+                <p>We use the collected information for the following purposes:</p>
+                <ul>
+                    <li>Providing and improving the text beautification service</li>
+                    <li>Generating and storing beautified articles for access via links</li>
+                    <li>Analyzing usage to optimize user experience</li>
+                    <li>Preventing abuse and ensuring service security</li>
+                    <li>Responding to your requests and support needs</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>3. Data Storage and Security</h2>
+                <p>We take reasonable technical and organizational measures to protect your data:</p>
+                <ul>
+                    <li>All data transmission uses encrypted connections (HTTPS)</li>
+                    <li>Generated articles are stored on secure servers</li>
+                    <li>Regular data backups to prevent loss</li>
+                    <li>Restricted employee access to user data</li>
+                    <li>Continuous monitoring and improvement of security measures</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>4. Data Sharing</h2>
+                <p><strong>We do not sell, rent, or trade your personal information.</strong></p>
+                <p>We may share information in the following circumstances:</p>
+                <ul>
+                    <li><strong>Legal Requirements:</strong> In accordance with laws, regulations, court orders, or government requests</li>
+                    <li><strong>Protection of Rights:</strong> To protect our rights, property, or safety, or the rights, property, or safety of others</li>
+                    <li><strong>Service Providers:</strong> With trusted third parties who help us operate the service (they must comply with confidentiality obligations)</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>5. Your Rights</h2>
+                <p>You have the following rights regarding your personal data:</p>
+                <ul>
+                    <li><strong>Right to Access:</strong> You can request to know what information we hold about you</li>
+                    <li><strong>Right to Correction:</strong> You can request correction of inaccurate or incomplete information</li>
+                    <li><strong>Right to Deletion:</strong> You can request deletion of your personal data and generated articles</li>
+                    <li><strong>Right to Object:</strong> You can object to certain processing of your data</li>
+                    <li><strong>Right to Data Portability:</strong> You can request your data in a structured format</li>
+                </ul>
+                <p>To exercise these rights, please contact us at support@isheet.net.</p>
+            </div>
+            
+            <div class="section">
+                <h2>6. Cookie Usage</h2>
+                <p>We use cookies and similar technologies to:</p>
+                <ul>
+                    <li>Remember your language preference settings</li>
+                    <li>Maintain login status and session information</li>
+                    <li>Analyze website traffic and usage patterns</li>
+                    <li>Improve user experience</li>
+                </ul>
+                <p>You can manage or disable cookies through your browser settings, but this may affect the normal functioning of certain features.</p>
+            </div>
+            
+            <div class="section">
+                <h2>7. Children's Privacy</h2>
+                <p>Our service is not directed to children under 13 years of age. We do not knowingly collect personal information from children. If we discover that we have inadvertently collected information from children, we will delete it immediately.</p>
+            </div>
+            
+            <div class="section">
+                <h2>8. Policy Updates</h2>
+                <p>We may update this Privacy Policy from time to time. For significant changes, we will notify you through website announcements or email. We recommend reviewing this policy regularly to stay informed.</p>
+            </div>
+            
+            <div class="section">
+                <h2>9. Contact Us</h2>
+                <p>If you have any questions, comments, or suggestions about this Privacy Policy, please contact us:</p>
+                <p><strong>Email:</strong> support@isheet.net</p>
+                <p>We will respond to your inquiries within a reasonable time.</p>
+            </div>
+            
+            <a href="/" class="back-link">← Back to Home</a>
+            {% endif %}
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <p style="margin: 15px 0; font-size: 1.8em; opacity: 0.9;">{{ t('footer_domain') }}</p>
+            <p style="margin: 15px 0; font-size: 1em;">{{ t('footer_slogan') }}</p>
+            <div class="footer-links">
+                <a href="/terms-en">{{ t('link_terms') }}</a>
+                <a href="/privacy-en">{{ t('link_privacy') }}</a>
+            </div>
+            <div class="copyright" style="opacity: 0.8; font-size: 0.9em; margin-top: 15px;">
+                {{ t('copyright_text') }}
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
